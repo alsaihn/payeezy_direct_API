@@ -28,7 +28,7 @@ class Payeezy(object):
 
         makePayload_output = self.addAddress(makePayload_output, street, city, state, zip, country, email)
 
-		return self.makePrimaryTransaction( payload=makePayload_output['payload'])
+        return self.makePrimaryTransaction( payload=makePayload_output['payload'])
 
 	def purchase(self, amount=None, currency_code=None, card_type=None, cardholder_name=None, card_number=None, card_expiry=None, card_cvv=None, description=None):
 		
@@ -80,26 +80,26 @@ class Payeezy(object):
 		return self.payeezy.makeCaptureVoidRefundPostCall(self.payload,self.transactionID)
 
     def addAddress(self, payload, street=None, city=None, zip=None, state=None, country=None, email=None):
-       if street is None: 
-           raise ValueError, 'Street address cannot be nil'
-       if city is None: 
-           raise ValueError, 'City cannot be nil'
-       if zip is None:
-           raise ValueError, 'Zip code cannot be nil'
-       if type(zip) is int:
-           zip = str(zip)
-       if state is None:
-           raise ValueError, 'State cannot be nil'
-       if country is None:
-           raise ValueError, 'Country cannot be nil'
-       if email is None: 
-           raise ValueError, 'Email cannot be nil'
+        if street is None: 
+            raise ValueError, 'Street address cannot be nil'
+        if city is None: 
+            raise ValueError, 'City cannot be nil'
+        if zip is None:
+            raise ValueError, 'Zip code cannot be nil'
+        if type(zip) is int:
+            zip = str(zip)
+        if state is None:
+            raise ValueError, 'State cannot be nil'
+        if country is None:
+            raise ValueError, 'Country cannot be nil'
+        if email is None: 
+        raise ValueError, 'Email cannot be nil'
 
-       address = {"street": street, "city": city, "state_province": state, "zip_postal_code": zip, 
+        address = {"street": street, "city": city, "state_province": state, "zip_postal_code": zip, 
                   "country": country, "email": email}
 
-       payload["payload"]["billing_address"] = address
-       return payload
+        payload["payload"]["billing_address"] = address
+        return payload
 
 
 	def makePayload(self, amount=None, currency_code=None, card_type=None, cardholder_name=None, card_number=None, card_expiry=None, card_cvv=None, description=None, transactionType=None, transactionTag=None, transactionID=None):
